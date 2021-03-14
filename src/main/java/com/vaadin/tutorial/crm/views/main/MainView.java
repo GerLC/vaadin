@@ -18,6 +18,7 @@ import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.tutorial.crm.views.about.AboutView;
+import com.vaadin.tutorial.crm.views.dashboard.DashboardView;
 import com.vaadin.tutorial.crm.views.helloworld.HelloWorldView;
 import com.vaadin.tutorial.crm.views.list.ListView;
 
@@ -84,7 +85,9 @@ public class MainView extends AppLayout {
         return new Tab[]{
                 createTab("Hello World", HelloWorldView.class),
                 createTab("Contacts", ListView.class),
+                createTab("Dashboard", DashboardView.class),
                 createTab("About", AboutView.class),
+
         };
     }
 
@@ -92,6 +95,7 @@ public class MainView extends AppLayout {
         final Tab tab = new Tab();
         tab.add(new RouterLink(text, navigationTarget));
         ComponentUtil.setData(tab, Class.class, navigationTarget);
+
         return tab;
     }
 

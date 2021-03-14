@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm;
 
+import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
@@ -18,7 +19,7 @@ import org.vaadin.artur.helpers.LaunchUtil;
 @SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
 @Theme(value = Lumo.class, variant = Lumo.DARK)
 @PWA(name = "Vaadin CRM", shortName = "Vaadin CRM", offlineResources = {"./styles/offline.css", "./images/offline.png"})
-public class Application extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
 
     public static void main(String[] args) {
         LaunchUtil.launchBrowserInDevelopmentMode(SpringApplication.run(Application.class, args));
