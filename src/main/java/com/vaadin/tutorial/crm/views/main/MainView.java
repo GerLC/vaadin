@@ -1,7 +1,5 @@
 package com.vaadin.tutorial.crm.views.main;
 
-import java.util.Optional;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -9,22 +7,21 @@ import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
-import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.server.PWA;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.tutorial.crm.views.main.MainView;
-import com.vaadin.tutorial.crm.views.helloworld.HelloWorldView;
+import com.vaadin.flow.router.RouterLink;
 import com.vaadin.tutorial.crm.views.about.AboutView;
+import com.vaadin.tutorial.crm.views.helloworld.HelloWorldView;
+import com.vaadin.tutorial.crm.views.list.ListView;
+
+import java.util.Optional;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -67,6 +64,7 @@ public class MainView extends AppLayout {
         HorizontalLayout logoLayout = new HorizontalLayout();
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+        logoLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         logoLayout.add(new Image("images/logo.png", "Vaadin CRM logo"));
         logoLayout.add(new H1("Vaadin CRM"));
         layout.add(logoLayout, menu);
@@ -76,14 +74,18 @@ public class MainView extends AppLayout {
     private Tabs createMenu() {
         final Tabs tabs = new Tabs();
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
-        tabs.addThemeVariants(TabsVariant.LUMO_MINIMAL);
+        tabs.addThemeVariants(TabsVariant.LUMO_ICON_ON_TOP);
         tabs.setId("tabs");
         tabs.add(createMenuItems());
         return tabs;
     }
 
     private Component[] createMenuItems() {
-        return new Tab[]{createTab("Hello World", HelloWorldView.class), createTab("About", AboutView.class)};
+        return new Tab[]{
+                createTab("Hello World", HelloWorldView.class),
+                createTab("Contacts", ListView.class),
+                createTab("About", AboutView.class),
+        };
     }
 
     private static Tab createTab(String text, Class<? extends Component> navigationTarget) {
@@ -109,4 +111,5 @@ public class MainView extends AppLayout {
         PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
         return title == null ? "" : title.value();
     }
+
 }
