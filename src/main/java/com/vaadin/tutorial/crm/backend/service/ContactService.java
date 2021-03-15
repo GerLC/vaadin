@@ -42,14 +42,30 @@ public class ContactService {
         }
     }
 
+    /**
+     * @return the amount of all contacts in the system
+     */
     public long count() {
       return contactRepository.count();
     }
 
+    /**
+     * Deletes a contacts from a system
+     *
+     * @param contact
+     *            the Contact to be deleted
+     */
     public void delete(Contact contact) {
       contactRepository.delete(contact);
     }
 
+    /**
+     * Persists or updates contacts in the system. Also assigns an identifier
+     * for new Contacts instances.
+     *
+     * @param contact
+     * the Contact to be saved
+     */
     public void save(Contact contact) {
       if (contact == null) {
         LOGGER.log(Level.SEVERE, "Contact is null. Are you sure you have connected your form to the application?");
@@ -58,6 +74,9 @@ public class ContactService {
       contactRepository.save(contact);
     }
 
+    /**
+     * Populate Companys and Contacts
+     */
     @PostConstruct
     public void populateTestData() {
 

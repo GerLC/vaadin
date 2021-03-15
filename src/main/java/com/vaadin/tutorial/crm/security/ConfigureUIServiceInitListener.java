@@ -7,6 +7,7 @@ import com.vaadin.flow.server.VaadinServiceInitListener;
 import com.vaadin.tutorial.crm.views.login.LoginView;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class ConfigureUIServiceInitListener implements VaadinServiceInitListener  {
 
@@ -18,6 +19,12 @@ public class ConfigureUIServiceInitListener implements VaadinServiceInitListener
         });
     }
 
+    /**
+     * Reroutes the user if she is not authorized to access the view.
+     *
+     * @param event
+     *            before navigation event with event details
+     */
     private void authenticateNavigation(BeforeEnterEvent event) {
         if (!LoginView.class.equals(event.getNavigationTarget())
                 && !SecurityUtils.isUserLoggedIn()) {

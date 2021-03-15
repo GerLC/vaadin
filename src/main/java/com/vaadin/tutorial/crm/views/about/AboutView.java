@@ -14,7 +14,7 @@ public class AboutView extends Div {
 
     public AboutView() {
         addClassName("about-view");
-        add(new Text("Content placeholder for you next "));
+        add(new Text("MI APP PARA EL TUTORIAL "));
     }
 
 }
