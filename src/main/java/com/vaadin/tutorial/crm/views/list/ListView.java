@@ -18,10 +18,10 @@ import com.vaadin.tutorial.crm.views.main.MainView;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Route(value = "contacts", layout = MainView.class)
-@PageTitle("Contacts")
-@Scope("prototype")
 @Component
+@Scope("prototype")
+@Route(value = "contacts", layout = MainView.class)
+@PageTitle("Contacts | Vaadin CRM")
 public class ListView extends VerticalLayout {
 
     //Components
@@ -29,23 +29,22 @@ public class ListView extends VerticalLayout {
     TextField filter = new TextField("Filter by name");
 
     // Services
-    private ContactService contactService;
-    private CompanyService companyService;
+    ContactService contactService;
 
     ContactForm contactForm;
 
     public ListView(ContactService contactService, CompanyService companyService) {
         this.contactService = contactService;
+        addClassName("list-view");
+
         configureGrid();
         getToolbar();
-        contactForm = new ContactForm(companyService.findAll());
 
-        closeEditor();
+        contactForm = new ContactForm(companyService.findAll());
         contactForm.addListener(ContactForm.SaveEvent.class, this::saveContact);
         contactForm.addListener(ContactForm.DeleteEvent.class, this::deleteContact);
         contactForm.addListener(ContactForm.CloseEvent.class, e -> closeEditor());
 
-        addClassName("list-view");
         setSizeFull();
 
         Div content = new Div();
@@ -53,9 +52,10 @@ public class ListView extends VerticalLayout {
         content.addClassName("content");
         content.setSizeFull();
 
-        add(getToolbar(), content );
+        add(getToolbar(), content);
 
         updateList();
+        closeEditor();
     }
 
     private void configureGrid() {
