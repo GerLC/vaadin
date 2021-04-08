@@ -9,8 +9,13 @@ import com.vaadin.tutorial.crm.views.main.MainView;
 
 @Route(value = "Aplicants", layout = MainView.class)
 @PageTitle("Aplicants")
-public class ListAplicantView extends VerticalLayout {
+public class ListAplicantView extends VerticalLayout implements AfterNavigationObserver {
 
+
+    @Override 
+    public void afterNavigation(AfterNavigationEvent event) { 
+        QueryParameters queryParameters = event.getLocation().getQueryParameters(); 
+    } 
 
     Grid<Contact> grid = new Grid<>(Contact.class);
 
