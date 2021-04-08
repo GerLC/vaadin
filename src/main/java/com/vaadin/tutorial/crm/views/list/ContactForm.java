@@ -19,7 +19,6 @@ import com.vaadin.tutorial.crm.backend.entity.Contact;
 
 import java.util.List;
 
-
 public class ContactForm extends FormLayout {
 
     TextField firstName = new TextField();

@@ -6,6 +6,7 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.H1;
@@ -19,10 +20,8 @@ import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.VaadinSession;
-import com.vaadin.tutorial.crm.views.about.AboutView;
-import com.vaadin.tutorial.crm.views.dashboard.DashboardView;
+import com.vaadin.tutorial.crm.views.dashboardhire.DashboardView;
 import com.vaadin.tutorial.crm.views.helloworld.HelloWorldView;
-import com.vaadin.tutorial.crm.views.list.ListView;
 
 import java.util.Optional;
 
@@ -70,10 +69,8 @@ public class MainView extends AppLayout {
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
         logoLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-        logoLayout.add(new Image("images/logo.png", "Vaadin CRM logo"));
-        logoLayout.add(new H1("Vaadin CRM"));
-
-
+        logoLayout.add(new Image("images/logo.png", "logo"));
+        logoLayout.add(new H1("HireSpace"));
 
         layout.add(logoLayout, menu, createLogout());
         layout.expand(menu);
@@ -83,10 +80,10 @@ public class MainView extends AppLayout {
 
     private Component createLogout(){
         Button logout = new Button(" Cerrar Sesion");
+        logout.addThemeVariants(ButtonVariant.LUMO_ERROR);
         logout.addClickListener(buttonClickEvent -> {
             VaadinSession.getCurrent().getSession().invalidate();
         });
-        logout.getElement().getStyle().set("color","red");
         logout.setId("logout");
 
         return logout;
@@ -106,9 +103,8 @@ public class MainView extends AppLayout {
     private Component[] createMenuItems() {
         return new Tab[]{
                 createTab("Hello World", HelloWorldView.class),
-                createTab("Contacts", ListView.class),
-                createTab("Dashboard", DashboardView.class),
-                createTab("About", AboutView.class),
+                createTab("JobOffer", DashboardView.class),
+                createTab("Bills", DashboardView.class),
         };
     }
 

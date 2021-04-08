@@ -24,6 +24,7 @@ public abstract class AbstractTest extends ParallelTest {
 
     @BeforeClass
     public static void setupClass() {
+
         WebDriverManager.chromedriver().setup();
     }
 

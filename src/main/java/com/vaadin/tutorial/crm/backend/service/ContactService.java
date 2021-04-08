@@ -9,15 +9,13 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
 public class ContactService {
 
-    private static final Logger LOGGER = Logger.getLogger(ContactService.class.getName());
+//    private static final Logger LOGGER = Logger.getLogger(ContactService.class.getName());
     private ContactRepository contactRepository;
     private CompanyRepository companyRepository;
 
@@ -68,7 +66,7 @@ public class ContactService {
      */
     public void save(Contact contact) {
       if (contact == null) {
-        LOGGER.log(Level.SEVERE, "Contact is null. Are you sure you have connected your form to the application?");
+//        LOGGER.log(Level.SEVERE, "Contact is null. Are you sure you have connected your form to the application?");
         return;
       }
       contactRepository.save(contact);
