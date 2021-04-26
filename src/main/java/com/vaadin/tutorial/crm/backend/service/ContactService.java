@@ -25,6 +25,14 @@ public class ContactService {
     }
 
     /**
+     * @return all Customer's
+     */
+    public  List<Contact> findAll() {
+        return contactRepository.findAll();
+
+    }
+
+    /**
      * Finds all Customer's that match given filter.
      *
      * @param filterText
